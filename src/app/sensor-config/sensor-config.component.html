@@ -1,0 +1,10 @@
+<form class="sensor-form">
+
+  <sensor-1w *ngFor="let sensor of sensors1w"
+    [address]="sensor.address"
+    [path]="sensor.signalKPath"
+    [tempK]="sensor.tempK"></sensor-1w>
+ 
+
+
+</form>
