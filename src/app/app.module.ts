@@ -15,13 +15,13 @@ import {  MatInputModule,
 
 import { AppComponent } from './app.component';
 import { SensorConfigComponent } from './sensor-config/sensor-config.component';
-import { Sensor1wComponent } from './sensor-1w/sensor-1w.component';
+import { SensorListComponent } from './sensor-list/sensor-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SensorConfigComponent,
-    Sensor1wComponent
+    SensorListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,13 @@
+<form class="sensor-form">
+  
+    <sensor-config *ngFor="let sensor of sensors"
+      [address]="sensor.address"
+      [path]="sensor.signalKPath"
+      [attr]="sensor.attr"
+      [type]="sensor.type">
+      </sensor-config>
+   
+  
+  
+  </form>
+  

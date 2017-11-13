@@ -1,37 +1,65 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { FormControl } from '@angular/forms';
+import { Validators } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/operator/map';
 
+import { signalKPaths } from '../signalk-paths.const';
 
-interface IGetSensorResponse {
-  '1wSensors'?: { address: string; signalkPath: string; tempK: number }[];
-}
+interface IAttr {
+  signalKPath: string;
+  value: number;
+}[];
 
 
 @Component({
-  selector: 'app-sensor-config',
+  selector: 'sensor-config',
   templateUrl: './sensor-config.component.html',
   styleUrls: ['./sensor-config.component.css']
 })
 export class SensorConfigComponent implements OnInit {
 
-  sensors1w = [];
+  pathCtrl: FormControl;
+  filteredPaths: Observable<string[]>;
+
+  @Input('address') address: string;
+  @Input('path') path: string;
+  @Input('attr') attr: IAttr;
+  @Input('type') type: string;
+
+  signalKPaths = [];
   
-  constructor(private http: HttpClient) { }
+  newPath: string;
+
+  constructor(private http: HttpClient) {
+    this.pathCtrl = new FormControl('', [ Validators.required, this.wildCardValidator ]);
+    this.filteredPaths = this.pathCtrl.valueChanges
+      .startWith(null)
+      .map(path =>  path ? this.filterPaths(path) : this.signalKPaths.slice())
+   }
+
 
   ngOnInit() {
-    this.http.get<IGetSensorResponse>('http://192.168.0.50/getSensors').subscribe(
-      data => {
-        if (data['1wSensors'] !== undefined) {
-          this.sensors1w = data['1wSensors'];
-        }
-       
-      },
-      err => {
-        console.log('Unable to fetch sensorList');
-      }
-    )
-
+    this.signalKPaths = signalKPaths;
+    this.pathCtrl.setValue(this.path);
   }
 
+  filterPaths(path:string) {
+    return this.signalKPaths.filter(allpaths => allpaths.indexOf(path.toLowerCase()) >= 0 );
+  }
+
+  wildCardValidator(input: FormControl) {
+    const hasNoWildCard = input.value.indexOf('*') < 0;
+    return hasNoWildCard ? null : { hasWildCard: true };
+  }
+
+
+  savePath() {
+    this.http.get('http://192.168.0.50/set1wSensorPath?address=' + this.address + '&path=' + this.pathCtrl.value).subscribe();
+  }
+
+ 
 }
