@@ -1,13 +1,26 @@
 <form class="sensor-form">
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let sensor of sensors">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ sensor.type }} Sensor</mat-panel-title>
+        <mat-panel-description>Address: {{ sensor.address }}</mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <sensor-config-attr *ngFor="let attr of sensor.attr"
+        [address]="sensor.address"
+        [attrName]="attr.attrName"
+        [sensorType]="sensor.type"
+        [path]="attr.signalKPath"
+        [currentValue]="attr.value"
+        >
+      </sensor-config-attr>
+
+
+    </mat-expansion-panel>
+
+    
+    </mat-accordion>
   
-    <sensor-config *ngFor="let sensor of sensors"
-      [address]="sensor.address"
-      [path]="sensor.signalKPath"
-      [attr]="sensor.attr"
-      [type]="sensor.type">
-      </sensor-config>
-   
-  
-  
-  </form>
+</form>
   

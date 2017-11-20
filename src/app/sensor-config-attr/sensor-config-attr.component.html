@@ -1,0 +1,14 @@
+<mat-form-field class="width-full">
+    <input matInput [placeholder]="attrName" name="path" [matAutocomplete]="auto" [formControl]="pathCtrl">
+    <mat-error *ngIf="pathCtrl.hasError('hasWildCard')">
+      Please replace wildcard with value
+    </mat-error>
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let path of filteredPaths | async" [value]="path">
+          {{ path }}
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field>
+<button mat-raised-button color="accent" [disabled]="!pathCtrl.valid || pathCtrl.pristine" (click)="savePath()">Save</button>
+  
+

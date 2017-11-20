@@ -9,29 +9,24 @@ import 'rxjs/add/operator/map';
 
 import { signalKPaths } from '../signalk-paths.const';
 
-interface IAttr {
-  signalKPath: string;
-  value: number;
-}[];
-
 
 @Component({
-  selector: 'sensor-config',
-  templateUrl: './sensor-config.component.html',
-  styleUrls: ['./sensor-config.component.css']
+  selector: 'sensor-config-attr',
+  templateUrl: './sensor-config-attr.component.html',
+  styleUrls: ['./sensor-config-attr.component.css']
 })
-export class SensorConfigComponent implements OnInit {
+export class SensorConfigAttrComponent implements OnInit {
 
   pathCtrl: FormControl;
   filteredPaths: Observable<string[]>;
 
   @Input('address') address: string;
+  @Input('attrName') attrName: string;
+  @Input('sensorType') sensorType: string;
   @Input('path') path: string;
-  @Input('attr') attr: IAttr;
-  @Input('type') type: string;
-
-  signalKPaths = [];
+  @Input('currentValue') currentValue: number;
   
+  signalKPaths = [];
   newPath: string;
 
   constructor(private http: HttpClient) {
@@ -58,8 +53,7 @@ export class SensorConfigComponent implements OnInit {
 
 
   savePath() {
-    this.http.get('http://192.168.0.50/set1wSensorPath?address=' + this.address + '&path=' + this.pathCtrl.value).subscribe();
+    this.http.get('http://192.168.0.64/setSensorPath?address=' + this.address + '&attrName=' + this.attrName + '&path=' + this.pathCtrl.value).subscribe();
   }
 
- 
 }

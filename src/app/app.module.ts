@@ -7,21 +7,24 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {  MatInputModule, 
           MatFormFieldModule,
           MatToolbarModule,
-          //MatExpansionModule,
+          MatExpansionModule,
           MatAutocompleteModule,
           MatSidenavModule,
           MatCardModule,
-          MatButtonModule } from '@angular/material';
+          MatButtonModule,
+           } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { SensorConfigComponent } from './sensor-config/sensor-config.component';
+//import { SensorConfigComponent } from './sensor-config/sensor-config.component';
 import { SensorListComponent } from './sensor-list/sensor-list.component';
+import { SensorConfigAttrComponent } from './sensor-config-attr/sensor-config-attr.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SensorConfigComponent,
-    SensorListComponent
+    //SensorConfigComponent,
+    SensorListComponent,
+    SensorConfigAttrComponent
   ],
   imports: [
     BrowserModule,
@@ -34,12 +37,11 @@ import { SensorListComponent } from './sensor-list/sensor-list.component';
     MatFormFieldModule,
     MatToolbarModule,
     MatAutocompleteModule,
-    //MatExpansionModule,
+    MatExpansionModule,
     MatCardModule,
     MatSidenavModule,
-    MatButtonModule
-  ],
-  providers: [],
+    MatButtonModule,  ],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

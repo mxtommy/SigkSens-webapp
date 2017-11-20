@@ -1,19 +1,24 @@
-<mat-toolbar color="primary">Configuration of SigKSens</mat-toolbar>
-<app-sensor-list></app-sensor-list>
+
+<mat-sidenav-container class="container-class">
+    <mat-sidenav #sidenav class="sidenav">
+        <mat-nav-list>
+            <mat-list-item>
+                <a mat-list-item href="test">General</a>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-toolbar color="primary">
+        <button type="button" mat-raised-button (click)="sidenav.open()" color="accent">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="30px" viewBox="0 0 12 14">
+                <path d="M12 10.5v1q0 0.203-0.148 0.352t-0.352 0.148h-11q-0.203 0-0.352-0.148t-0.148-0.352v-1q0-0.203 0.148-0.352t0.352-0.148h11q0.203 0 0.352 0.148t0.148 0.352zM12 6.5v1q0 0.203-0.148 0.352t-0.352 0.148h-11q-0.203 0-0.352-0.148t-0.148-0.352v-1q0-0.203 0.148-0.352t0.352-0.148h11q0.203 0 0.352 0.148t0.148 0.352zM12 2.5v1q0 0.203-0.148 0.352t-0.352 0.148h-11q-0.203 0-0.352-0.148t-0.148-0.352v-1q0-0.203 0.148-0.352t0.352-0.148h11q0.203 0 0.352 0.148t0.148 0.352z"></path>
+            </svg> 
+        </button>
+        Configuration of SigKSens
+    </mat-toolbar>
+    <sensor-list></sensor-list>
+    
+</mat-sidenav-container>
 
 
-<!--<mat-accordion>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>1Wire Sensor Config</mat-panel-title>
-      <mat-panel-description>Configure the SignalKPath of detected 1Wire Devices</mat-panel-description>
-    </mat-expansion-panel-header>
-  </mat-expansion-panel>
-  <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>SHT30 Sensor Config</mat-panel-title>
-        <mat-panel-description>Configure the SignalKPath of detected Onboard Temp/Humidity Sensor</mat-panel-description>
-      </mat-expansion-panel-header>
-      <app-sensor-config></app-sensor-config>
-    </mat-expansion-panel>
-</mat-accordion> -->
+
+<!-- -->
