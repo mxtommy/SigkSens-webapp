@@ -1,8 +1,10 @@
 .container-class {
     height: 100%;
 }
+.mat-drawer-container {
+    height: 100%;
+}
 
-.sidenav {
-    width: 30%;
-    padding: 20px;
+.sidenavMenu {
+    width: 220px;
 }

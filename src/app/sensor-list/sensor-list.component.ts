@@ -26,12 +26,14 @@ export class SensorListComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get<IGetSensorResponse>('http://192.168.0.64/getSensors').subscribe(
+    console.log(window.location);
+
+    this.http.get<IGetSensorResponse>('http://192.168.0.52/getSensors').subscribe(
       data => {
         if (data['sensors'] !== undefined) {
           this.sensors = data['sensors'];
         }
-        this.webSocket = new WebSocket("ws://192.168.0.64:81");
+        this.webSocket = new WebSocket("ws://192.168.0.52:81");
       },
       err => {
         console.log('Unable to fetch sensorList');

@@ -2,6 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+//Routes
+import { RouterModule, Routes } from '@angular/router';
+
 //Material
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {  MatInputModule, 
@@ -12,6 +16,7 @@ import {  MatInputModule,
           MatSidenavModule,
           MatCardModule,
           MatButtonModule,
+          MatListModule,
            } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -19,12 +24,31 @@ import { AppComponent } from './app.component';
 import { SensorListComponent } from './sensor-list/sensor-list.component';
 import { SensorConfigAttrComponent } from './sensor-config-attr/sensor-config-attr.component';
 
+import { DashboardComponent } from './dashboard/dashboard.component';
+
+
+const routes: Routes = [
+  { path: 'dashboard', component: DashboardComponent },
+  { path: '',
+    redirectTo: '/dashboard',
+    pathMatch: 'full'
+  },
+  { path: '**',
+    redirectTo: '/dashboard',
+    pathMatch: 'full'
+  }
+  ];
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     //SensorConfigComponent,
     SensorListComponent,
-    SensorConfigAttrComponent
+    SensorConfigAttrComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,8 +64,12 @@ import { SensorConfigAttrComponent } from './sensor-config-attr/sensor-config-at
     MatExpansionModule,
     MatCardModule,
     MatSidenavModule,
-    MatButtonModule,  ],
-  providers: [ ],
+    MatButtonModule,  
+    MatListModule,
+  
+    RouterModule.forRoot(routes, { useHash: true }),
+  ],
+  providers: [  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

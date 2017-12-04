@@ -1,23 +1,22 @@
-
-<mat-sidenav-container class="container-class">
-    <mat-sidenav #sidenav class="sidenav">
+<mat-toolbar color="primary">
+    <button type="button" mat-icon-button (click)="sidenav.open()" color="accent">
+            <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+    </button>
+    SigKSens
+</mat-toolbar>
+<mat-sidenav-container #sidenav>
+    <mat-sidenav class="sidenavMenu">
         <mat-nav-list>
-            <mat-list-item>
-                <a mat-list-item href="test">General</a>
-            </mat-list-item>
+            <a mat-list-item routerLink="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a>    
+            <a mat-list-item routerLink="/server">aaa</a>    
         </mat-nav-list>
     </mat-sidenav>
-    <mat-toolbar color="primary">
-        <button type="button" mat-raised-button (click)="sidenav.open()" color="accent">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="30px" viewBox="0 0 12 14">
-                <path d="M12 10.5v1q0 0.203-0.148 0.352t-0.352 0.148h-11q-0.203 0-0.352-0.148t-0.148-0.352v-1q0-0.203 0.148-0.352t0.352-0.148h11q0.203 0 0.352 0.148t0.148 0.352zM12 6.5v1q0 0.203-0.148 0.352t-0.352 0.148h-11q-0.203 0-0.352-0.148t-0.148-0.352v-1q0-0.203 0.148-0.352t0.352-0.148h11q0.203 0 0.352 0.148t0.148 0.352zM12 2.5v1q0 0.203-0.148 0.352t-0.352 0.148h-11q-0.203 0-0.352-0.148t-0.148-0.352v-1q0-0.203 0.148-0.352t0.352-0.148h11q0.203 0 0.352 0.148t0.148 0.352z"></path>
-            </svg> 
-        </button>
-        Configuration of SigKSens
-    </mat-toolbar>
-    <sensor-list></sensor-list>
-    
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
 </mat-sidenav-container>
+
 
 
 

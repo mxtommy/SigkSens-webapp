@@ -53,7 +53,7 @@ export class SensorConfigAttrComponent implements OnInit {
 
 
   savePath() {
-    this.http.get('http://192.168.0.64/setSensorPath?address=' + this.address + '&attrName=' + this.attrName + '&path=' + this.pathCtrl.value).subscribe();
+    this.http.get('http://192.168.0.52/setSensorPath?address=' + this.address + '&attrName=' + this.attrName + '&path=' + this.pathCtrl.value).subscribe();
   }
 
 }
