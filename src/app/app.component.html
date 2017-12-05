@@ -2,7 +2,9 @@
     <button type="button" mat-icon-button (click)="sidenav.open()" color="primary">
             <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
     </button>
-    SigKSens for: <a (click)="changeHostname()">{{ host | async }} </a>
+    SigKSens for: <a class="hostname" (click)="changeHostname()">{{ host | async }} </a>
+    <div *ngIf="status">Ok</div>
+    <div *ngIf="!status">Error communicating with sensor</div>
 </mat-toolbar>
 <mat-sidenav-container #sidenav>
     <mat-sidenav class="sidenavMenu">

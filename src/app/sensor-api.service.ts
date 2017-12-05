@@ -17,17 +17,20 @@ interface IGetSensorResponse {
   sensors: ISensorObject[];
 }
 
-
 @Injectable()
 export class SensorApiService {
 
   hostname: BehaviorSubject<string> = new BehaviorSubject<string>(window.location.host);
   sensors: Subject<ISensorObject[]> = new Subject<ISensorObject[]>();
+  status: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) { 
-    this.getSensors();
+    this.reset();
   }
 
+  getStatusAsO()  {
+    return this.status.asObservable();
+  }
   getHostNameAsO() {
     return this.hostname.asObservable();
   }
@@ -37,12 +40,21 @@ export class SensorApiService {
 
   setHostName(newHost: string) {
     this.hostname.next(newHost);
+    this.reset();
   }
+
+  reset() {
+    this.status.next(false);
+    this.getSensors();
+  }
+
+
 
   getSensors() {
     this.http.get<IGetSensorResponse>('http://'+ this.hostname.getValue() + '/getSensors').subscribe(
       data => {
         this.sensors.next(data['sensors']);
+        this.status.next(true);
         //this.webSocket = new WebSocket("ws://192.168.0.52:81");
       },
       err => {
