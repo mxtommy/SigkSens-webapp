@@ -20,8 +20,9 @@ export interface ISensorInfo {
 @Injectable()
 export class SensorApiService {
 
-  hostname: BehaviorSubject<string> = new BehaviorSubject<string>(window.location.host);
-  sensorInfo: Subject<ISensorInfo> = new Subject<ISensorInfo>();
+  //hostname: BehaviorSubject<string> = new BehaviorSubject<string>(window.location.host);
+  hostname: BehaviorSubject<string> = new BehaviorSubject<string>("192.168.0.52");
+  sensorInfo: BehaviorSubject<ISensorInfo> = new BehaviorSubject<ISensorInfo>(null);
   status: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) { 
@@ -67,6 +68,38 @@ export class SensorApiService {
   getSensorInfoAsO() {
     return this.sensorInfo.asObservable();
   }
+
+
+  //savers. surely better way to do this than one by one, but oh well
+  saveNewHostname(newHost: string) {
+    this.http.get('http://'+ this.hostname.getValue() + '/setNewHostname?hostname=' + newHost).subscribe(
+      data => {
+        this.status.next(true);
+      },
+      err => {
+        this.status.next(false);
+        console.log('Unable to save hostname');
+        console.log(err);
+      }
+    )    
+  }
+
+  saveSignalKHost(newHost: string) {
+    this.http.get('http://'+ this.hostname.getValue() + '/setSignalKHost?host=' + newHost).subscribe(
+      data => {
+        this.status.next(true);
+      },
+      err => {
+        this.status.next(false);
+        console.log('Unable to save hostname');
+        console.log(err);
+      }
+    )       
+  }
+
+
+
+
 
 
 }

@@ -1,2 +1,44 @@
-<p>
-{{sensorInfo}}</p>
+<mat-card>
+    <mat-card-content>
+        <mat-form-field class="width-full" >
+            <input matInput maxlength=16 placeholder="Sensor Hostname" name="sensorHostname" [formControl]="sensorHostname" pattern="^[a-zA-Z0-9\-_]+$">
+                <mat-error *ngIf="!sensorHostname.valid">
+                    Please verify Max 16 characters, letters, numbers, dash and underscore only
+                </mat-error>
+            <mat-hint>Max 16 characters, letters, numbers, dash and underscore only</mat-hint>
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" [disabled]="!sensorHostname.valid || sensorHostname.pristine" (click)="saveHostname()">Save</button>
+    </mat-card-actions>
+
+</mat-card>
+    
+<mat-card>
+    <mat-card-content>
+        <mat-form-field class="width-full" >
+            <input matInput maxlength=32 placeholder="SignalK Server Host" name="signalkHost" [formControl]="signalkHost" pattern="^[a-zA-Z0-9\-_\.]+$">
+                <mat-error *ngIf="!signalkHost.valid">
+                    Please verify IP or Hostname only. No protocol/port
+                </mat-error>
+            <mat-hint>IP or Hostname only. No protocol/port</mat-hint>
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" [disabled]="!signalkHost.valid || signalkHost.pristine" (click)="saveSignalKHost()">Save</button>
+    </mat-card-actions>
+</mat-card>
+<mat-card>
+    <mat-card-content>
+        <mat-form-field class="width-full" >
+            <input type="number" matInput maxlength=32 placeholder="SignalK Server Port" name="signalkPort" [formControl]="signalkPort">
+                <mat-error *ngIf="!signalkPort.valid">
+                    Please verify Port number for websocket connection
+                </mat-error>
+            <mat-hint>Port number for websocket connection.</mat-hint>
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" [disabled]="!signalkPort.valid || signalkPort.pristine" (click)="saveSignalKPort()">Save</button>
+    </mat-card-actions>
+</mat-card>
