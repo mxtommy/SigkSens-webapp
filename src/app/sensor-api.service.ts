@@ -13,7 +13,7 @@ interface ISensorObject {
   }
 }
 
-interface IGetSensorResponse {
+interface ISensorResponse {
   sensors: ISensorObject[];
 }
 
@@ -21,7 +21,7 @@ interface IGetSensorResponse {
 export class SensorApiService {
 
   hostname: BehaviorSubject<string> = new BehaviorSubject<string>(window.location.host);
-  sensors: Subject<ISensorObject[]> = new Subject<ISensorObject[]>();
+  sensorInfo: Subject<ISensorResponse> = new Subject<ISensorResponse>();
   status: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) { 
@@ -45,15 +45,15 @@ export class SensorApiService {
 
   reset() {
     this.status.next(false);
-    this.getSensors();
+    this.fetchInfo();
   }
 
 
 
-  getSensors() {
-    this.http.get<IGetSensorResponse>('http://'+ this.hostname.getValue() + '/getSensors').subscribe(
+  fetchInfo() {
+    this.http.get<ISensorResponse>('http://'+ this.hostname.getValue() + '/getSensors').subscribe(
       data => {
-        this.sensors.next(data['sensors']);
+        this.sensorInfo.next(data);
         this.status.next(true);
         //this.webSocket = new WebSocket("ws://192.168.0.52:81");
       },
@@ -63,5 +63,8 @@ export class SensorApiService {
       }
     )
   }
+
+
+
 
 }

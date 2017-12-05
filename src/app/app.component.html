@@ -9,8 +9,9 @@
 <mat-sidenav-container #sidenav>
     <mat-sidenav class="sidenavMenu">
         <mat-nav-list>
-            <a mat-list-item routerLink="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a>    
-            <a mat-list-item routerLink="/server">aaa</a>    
+            <a mat-list-item (click)="sidenav.close()" routerLink="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a>    
+            <a mat-list-item (click)="sidenav.close()" routerLink="/sigk"><i class="fa fa-gear" aria-hidden="true"></i> SignalK Settings</a>    
+            <a mat-list-item (click)="sidenav.close()" routerLink="/server">aaa</a>    
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

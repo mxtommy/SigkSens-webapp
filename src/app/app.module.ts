@@ -28,9 +28,11 @@ import { SensorConfigAttrComponent } from './sensor-config-attr/sensor-config-at
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SensorApiService } from './sensor-api.service';
 import { ModalChangeHostnameComponent } from './modal-change-hostname/modal-change-hostname.component';
+import { SignalkSettingsComponent } from './signalk-settings/signalk-settings.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'sigk', component: SignalkSettingsComponent },
   { path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full'
@@ -52,6 +54,7 @@ const routes: Routes = [
     SensorConfigAttrComponent,
     DashboardComponent,
     ModalChangeHostnameComponent,
+    SignalkSettingsComponent,
   ],
   imports: [
     BrowserModule,
