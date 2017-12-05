@@ -1,8 +1,8 @@
-<mat-toolbar color="primary">
-    <button type="button" mat-icon-button (click)="sidenav.open()" color="accent">
+<mat-toolbar color="accent">
+    <button type="button" mat-icon-button (click)="sidenav.open()" color="primary">
             <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
     </button>
-    SigKSens
+    SigKSens for: <a (click)="changeHostname()">{{ host | async }} </a>
 </mat-toolbar>
 <mat-sidenav-container #sidenav>
     <mat-sidenav class="sidenavMenu">

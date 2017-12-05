@@ -1,16 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
 
-interface IGetSensorResponse {
-   address: string; 
-    type: string;
-    attr: {
-      attrName: string;
-      signalKPath: string;
-      value: number;
-    }[];
-  }[];
 
 
 @Component({
@@ -23,23 +13,12 @@ export class SensorListComponent implements OnInit {
   sensors = [];
   webSocket;
   
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   ngOnInit() {
     console.log(window.location);
 
-    this.http.get<IGetSensorResponse>('http://192.168.0.52/getSensors').subscribe(
-      data => {
-        if (data['sensors'] !== undefined) {
-          this.sensors = data['sensors'];
-        }
-        this.webSocket = new WebSocket("ws://192.168.0.52:81");
-      },
-      err => {
-        console.log('Unable to fetch sensorList');
-        console.log(err);
-      }
-    )
+   
 
 
 

@@ -17,6 +17,7 @@ import {  MatInputModule,
           MatCardModule,
           MatButtonModule,
           MatListModule,
+          MatDialogModule,
            } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -25,7 +26,8 @@ import { SensorListComponent } from './sensor-list/sensor-list.component';
 import { SensorConfigAttrComponent } from './sensor-config-attr/sensor-config-attr.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { SensorApiService } from './sensor-api.service';
+import { ModalChangeHostnameComponent } from './modal-change-hostname/modal-change-hostname.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -49,6 +51,7 @@ const routes: Routes = [
     SensorListComponent,
     SensorConfigAttrComponent,
     DashboardComponent,
+    ModalChangeHostnameComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,10 +69,12 @@ const routes: Routes = [
     MatSidenavModule,
     MatButtonModule,  
     MatListModule,
-  
+    MatDialogModule,
+
     RouterModule.forRoot(routes, { useHash: true }),
   ],
-  providers: [  ],
+  entryComponents: [ ModalChangeHostnameComponent ],
+  providers: [ SensorApiService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

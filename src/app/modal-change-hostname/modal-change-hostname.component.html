@@ -1,0 +1,16 @@
+<form [formGroup]="hostnameForm" (ngSubmit)="submitConfig()">
+    
+  <div mat-dialog-title>
+    Set the hostname for the device to Manage
+  </div>
+  <div mat-dialog-content>
+    <mat-form-field>
+        <input matInput formControlName="newHost" type="text" placeholder="Host to Manage"
+        pattern="^[0-9a-zA-Z\.]+(:[0-9]+)?$">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+      <button type="submit" mat-raised-button color="primary">Submit</button>
+  </div>
+
+</form>
