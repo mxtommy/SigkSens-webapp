@@ -4,7 +4,7 @@
     </button>
     SigKSens for: <a class="hostname" (click)="changeHostname()">{{ host | async }} </a>
     <div *ngIf="status">Ok</div>
-    <div *ngIf="!status">Error communicating with sensor</div>
+    <div *ngIf="!status">Fetching info...</div>
 </mat-toolbar>
 <mat-sidenav-container #sidenav>
     <mat-sidenav class="sidenavMenu">

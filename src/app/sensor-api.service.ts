@@ -13,7 +13,7 @@ interface ISensorObject {
   }
 }
 
-interface ISensorResponse {
+export interface ISensorInfo {
   sensors: ISensorObject[];
 }
 
@@ -21,7 +21,7 @@ interface ISensorResponse {
 export class SensorApiService {
 
   hostname: BehaviorSubject<string> = new BehaviorSubject<string>(window.location.host);
-  sensorInfo: Subject<ISensorResponse> = new Subject<ISensorResponse>();
+  sensorInfo: Subject<ISensorInfo> = new Subject<ISensorInfo>();
   status: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) { 
@@ -51,7 +51,7 @@ export class SensorApiService {
 
 
   fetchInfo() {
-    this.http.get<ISensorResponse>('http://'+ this.hostname.getValue() + '/getSensors').subscribe(
+    this.http.get<ISensorInfo>('http://'+ this.hostname.getValue() + '/getSensorInfo').subscribe(
       data => {
         this.sensorInfo.next(data);
         this.status.next(true);
@@ -64,7 +64,9 @@ export class SensorApiService {
     )
   }
 
-
+  getSensorInfoAsO() {
+    return this.sensorInfo.asObservable();
+  }
 
 
 }

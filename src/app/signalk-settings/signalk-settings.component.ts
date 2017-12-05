@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+
+import { SensorApiService, ISensorInfo } from '../sensor-api.service';
+
+
 
 @Component({
   selector: 'app-signalk-settings',
@@ -7,9 +12,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignalkSettingsComponent implements OnInit {
 
-  constructor() { }
+  sensorInfoSub: Subscription;
+  sensorInfo: ISensorInfo;
+
+  constructor(private SensorApiService: SensorApiService) { }
 
   ngOnInit() {
+    this.sensorInfoSub = this.SensorApiService.getSensorInfoAsO().subscribe(i => this.sensorInfo = i);
   }
 
+
+  ngOnDestroy() {
+    this.sensorInfoSub.unsubscribe();
+  }
 }

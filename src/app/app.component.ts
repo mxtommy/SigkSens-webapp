@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 import { MatDialog } from '@angular/material';
 
 import { ModalChangeHostnameComponent } from './modal-change-hostname/modal-change-hostname.component';
