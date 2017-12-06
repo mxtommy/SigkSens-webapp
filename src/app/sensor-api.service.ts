@@ -91,14 +91,37 @@ export class SensorApiService {
       },
       err => {
         this.status.next(false);
-        console.log('Unable to save hostname');
+        console.log('Unable to save');
         console.log(err);
       }
     )       
   }
 
+  saveSignalKPort(newPort: number) {
+    this.http.get('http://'+ this.hostname.getValue() + '/setSignalKPort?port=' + newPort).subscribe(
+      data => {
+        this.status.next(true);
+      },
+      err => {
+        this.status.next(false);
+        console.log('Unable to save');
+        console.log(err);
+      }
+    )   
+  }
 
-
+  saveSignalKPath(newPath: string) {
+    this.http.get('http://'+ this.hostname.getValue() + '/setSignalKPath?path=' + newPath).subscribe(
+      data => {
+        this.status.next(true);
+      },
+      err => {
+        this.status.next(false);
+        console.log('Unable to save');
+        console.log(err);
+      }
+    )  
+  }
 
 
 

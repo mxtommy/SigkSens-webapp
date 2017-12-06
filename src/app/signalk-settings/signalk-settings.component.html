@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-content>
         <mat-form-field class="width-full" >
-            <input matInput maxlength=16 placeholder="Sensor Hostname" name="sensorHostname" [formControl]="sensorHostname" pattern="^[a-zA-Z0-9\-_]+$">
+            <input matInput maxlength=16 placeholder="Sensor Hostname" name="sensorHostname" [formControl]="sensorHostname" pattern="(^[a-zA-Z0-9\-_]+$)|(^$)">
                 <mat-error *ngIf="!sensorHostname.valid">
                     Please verify Max 16 characters, letters, numbers, dash and underscore only
                 </mat-error>
@@ -31,7 +31,7 @@
 <mat-card>
     <mat-card-content>
         <mat-form-field class="width-full" >
-            <input type="number" matInput maxlength=32 placeholder="SignalK Server Port" name="signalkPort" [formControl]="signalkPort">
+            <input type="number" matInput min="0" max="65000" placeholder="SignalK Server Port" name="signalkPort" [formControl]="signalkPort">
                 <mat-error *ngIf="!signalkPort.valid">
                     Please verify Port number for websocket connection
                 </mat-error>
@@ -40,5 +40,19 @@
     </mat-card-content>
     <mat-card-actions>
         <button mat-raised-button color="primary" [disabled]="!signalkPort.valid || signalkPort.pristine" (click)="saveSignalKPort()">Save</button>
+    </mat-card-actions>
+</mat-card>
+<mat-card>
+    <mat-card-content>
+        <mat-form-field class="width-full" >
+            <input matInput maxlength=32 placeholder="SignalK Server Path" name="signalkPath" [formControl]="signalkPath">
+                <mat-error *ngIf="!signalkPath.valid">
+                    Please verify path
+                </mat-error>
+            <mat-hint>URL Path for websocket connection.</mat-hint>
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" [disabled]="!signalkPath.valid || signalkPath.pristine" (click)="saveSignalKPath()">Save</button>
     </mat-card-actions>
 </mat-card>

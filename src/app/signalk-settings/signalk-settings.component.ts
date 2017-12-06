@@ -53,8 +53,15 @@ export class SignalkSettingsComponent implements OnInit, OnDestroy {
     this.signalkHost.markAsPristine();
   }
 
+  saveSignalKPort() {
+    this.SensorApiService.saveSignalKPort(this.signalkPort.value);
+    this.signalkPort.markAsPristine();
+  }
 
-
+  saveSignalKPath() {
+    this.SensorApiService.saveSignalKPath(this.signalkPath.value);
+    this.signalkPath.markAsPristine();
+  }
 
 
 
