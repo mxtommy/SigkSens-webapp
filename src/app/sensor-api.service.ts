@@ -123,6 +123,17 @@ export class SensorApiService {
     )  
   }
 
-
+  setNewTimerValue(timer:string, value: number) {
+    this.http.get('http://'+ this.hostname.getValue() + '/setTimerDelay?timer=' + timer +'&delay='+value).subscribe(
+      data => {
+        this.status.next(true);
+      },
+      err => {
+        this.status.next(false);
+        console.log('Unable to save');
+        console.log(err);
+      }
+    )      
+  }
 
 }

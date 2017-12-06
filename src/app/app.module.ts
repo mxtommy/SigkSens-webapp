@@ -29,10 +29,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SensorApiService } from './sensor-api.service';
 import { ModalChangeHostnameComponent } from './modal-change-hostname/modal-change-hostname.component';
 import { SignalkSettingsComponent } from './signalk-settings/signalk-settings.component';
+import { TimmerSettingsComponent } from './timmer-settings/timmer-settings.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'sigk', component: SignalkSettingsComponent },
+  { path: 'timers', component: TimmerSettingsComponent },
   { path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full'
@@ -55,6 +57,7 @@ const routes: Routes = [
     DashboardComponent,
     ModalChangeHostnameComponent,
     SignalkSettingsComponent,
+    TimmerSettingsComponent,
   ],
   imports: [
     BrowserModule,
