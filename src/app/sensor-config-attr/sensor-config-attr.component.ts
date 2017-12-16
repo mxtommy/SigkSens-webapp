@@ -8,6 +8,7 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
 import { signalKPaths } from '../signalk-paths.const';
+import { SensorApiService, ISensorInfo } from '../sensor-api.service';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class SensorConfigAttrComponent implements OnInit {
   signalKPaths = [];
   newPath: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private SensorApiService: SensorApiService) {
     this.pathCtrl = new FormControl('', [ Validators.required, this.wildCardValidator ]);
     this.filteredPaths = this.pathCtrl.valueChanges
       .startWith(null)
@@ -53,7 +54,9 @@ export class SensorConfigAttrComponent implements OnInit {
 
 
   savePath() {
-    this.http.get('http://192.168.0.52/setSensorPath?address=' + this.address + '&attrName=' + this.attrName + '&path=' + this.pathCtrl.value).subscribe();
+    this.SensorApiService.setSensorPath(this.address, this.attrName, this.pathCtrl.value);
+    this.pathCtrl.markAsPristine();
+    
   }
 
 }

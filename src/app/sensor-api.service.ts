@@ -136,4 +136,17 @@ export class SensorApiService {
     )      
   }
 
+  setSensorPath(address: string, attrName: string, path: string) {
+    this.http.get('http://'+ this.hostname.getValue() + '/setSensorPath?address=' + address + '&attrName=' + attrName + '&path=' + path).subscribe(
+      data => {
+        this.status.next(true);
+      },
+      err => {
+        this.status.next(false);
+        console.log('Unable to save');
+        console.log(err);
+      }      
+    );
+  }
+
 }
