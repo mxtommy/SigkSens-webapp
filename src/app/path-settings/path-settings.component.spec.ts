@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SensorListComponent } from './sensor-list.component';
+import { PathSettingsComponent } from './path-settings.component';
 
 describe('SensorListComponent', () => {
-  let component: SensorListComponent;
-  let fixture: ComponentFixture<SensorListComponent>;
+  let component: PathSettingsComponent;
+  let fixture: ComponentFixture<PathSettingsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SensorListComponent ]
+      declarations: [ PathSettingsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SensorListComponent);
+    fixture = TestBed.createComponent(PathSettingsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

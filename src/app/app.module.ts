@@ -22,7 +22,7 @@ import {  MatInputModule,
 
 import { AppComponent } from './app.component';
 //import { SensorConfigComponent } from './sensor-config/sensor-config.component';
-import { SensorListComponent } from './sensor-list/sensor-list.component';
+import { PathSettingsComponent } from './path-settings/path-settings.component';
 import { SensorConfigAttrComponent } from './sensor-config-attr/sensor-config-attr.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -35,6 +35,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'sigk', component: SignalkSettingsComponent },
   { path: 'timers', component: TimmerSettingsComponent },
+  { path: 'paths', component: PathSettingsComponent },
   { path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full'
@@ -52,7 +53,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     //SensorConfigComponent,
-    SensorListComponent,
+    PathSettingsComponent,
     SensorConfigAttrComponent,
     DashboardComponent,
     ModalChangeHostnameComponent,
