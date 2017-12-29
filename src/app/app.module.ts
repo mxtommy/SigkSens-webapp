@@ -16,20 +16,19 @@ import {  MatInputModule,
           MatSidenavModule,
           MatCardModule,
           MatButtonModule,
+          MatButtonToggleModule,
           MatListModule,
           MatDialogModule,
            } from '@angular/material';
 
 import { AppComponent } from './app.component';
 //import { SensorConfigComponent } from './sensor-config/sensor-config.component';
-import { PathSettingsComponent } from './path-settings/path-settings.component';
 import { SensorConfigAttrComponent } from './sensor-config-attr/sensor-config-attr.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SensorApiService } from './sensor-api.service';
 import { ModalChangeHostnameComponent } from './modal-change-hostname/modal-change-hostname.component';
 import { SignalkSettingsComponent } from './signalk-settings/signalk-settings.component';
-import { TimmerSettingsComponent } from './timmer-settings/timmer-settings.component';
 import { DigitalInSettingsComponent } from './digital-in-settings/digital-in-settings.component';
 import { Sht30SettingsComponent } from './sht30-settings/sht30-settings.component';
 import { OnewireSettingsComponent } from './onewire-settings/onewire-settings.component';
@@ -38,8 +37,6 @@ import { MpuSettingsComponent } from './mpu-settings/mpu-settings.component';
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'sigk', component: SignalkSettingsComponent },
-  { path: 'timers', component: TimmerSettingsComponent },
-  { path: 'paths', component: PathSettingsComponent },
   { path: 'digital', component: DigitalInSettingsComponent },
   { path: 'sht30', component: Sht30SettingsComponent },
   { path: 'onewire', component: OnewireSettingsComponent },
@@ -61,12 +58,10 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     //SensorConfigComponent,
-    PathSettingsComponent,
     SensorConfigAttrComponent,
     DashboardComponent,
     ModalChangeHostnameComponent,
     SignalkSettingsComponent,
-    TimmerSettingsComponent,
     DigitalInSettingsComponent,
     Sht30SettingsComponent,
     OnewireSettingsComponent,
@@ -87,6 +82,7 @@ const routes: Routes = [
     MatCardModule,
     MatSidenavModule,
     MatButtonModule,  
+    MatButtonToggleModule,
     MatListModule,
     MatDialogModule,
 

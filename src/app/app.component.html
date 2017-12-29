@@ -11,8 +11,6 @@
         <mat-nav-list>
             <a mat-list-item (click)="sidenav.close()" routerLink="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a>    
             <a mat-list-item (click)="sidenav.close()" routerLink="/sigk"><i class="fa fa-flag" aria-hidden="true"></i> SignalK Settings</a>    
-            <a mat-list-item (click)="sidenav.close()" routerLink="/paths"><i class="fa fa-folder-open" aria-hidden="true"></i>Paths</a>    
-            <a mat-list-item (click)="sidenav.close()" routerLink="/timers"><i class="fa fa-clock-o" aria-hidden="true"></i>Timers</a>    
             <a mat-list-item (click)="sidenav.close()" routerLink="/digital"><i class="fa fa-microchip" aria-hidden="true"></i>Digital Input</a>    
             <a *ngIf="oneWirePresent" mat-list-item (click)="sidenav.close()" routerLink="/onewire"><i class="fa fa-thermometer-half" aria-hidden="true"></i>OneWire Temp</a>   
             <a *ngIf="sht30Present"   mat-list-item (click)="sidenav.close()" routerLink="/sht30"><i class="fa fa-thermometer-half" aria-hidden="true"></i>SHT30 Temp/Humid</a>                           

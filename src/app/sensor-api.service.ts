@@ -166,4 +166,17 @@ export class SensorApiService {
     );
   }
 
+  setDigitalInputMode(input: number, mode: number) {
+    this.http.get('http://'+ this.hostname.getValue() + '/setDigitalMode?input=' + input + '&mode=' + mode).subscribe(
+      data => {
+        this.status.next(true);
+      },
+      err => {
+        this.status.next(false);
+        console.log('Unable to save');
+        console.log(err);
+      }      
+    );    
+  }
+
 }
