@@ -31,6 +31,9 @@ import { ModalChangeHostnameComponent } from './modal-change-hostname/modal-chan
 import { SignalkSettingsComponent } from './signalk-settings/signalk-settings.component';
 import { TimmerSettingsComponent } from './timmer-settings/timmer-settings.component';
 import { DigitalInSettingsComponent } from './digital-in-settings/digital-in-settings.component';
+import { Sht30SettingsComponent } from './sht30-settings/sht30-settings.component';
+import { OnewireSettingsComponent } from './onewire-settings/onewire-settings.component';
+import { MpuSettingsComponent } from './mpu-settings/mpu-settings.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -38,6 +41,9 @@ const routes: Routes = [
   { path: 'timers', component: TimmerSettingsComponent },
   { path: 'paths', component: PathSettingsComponent },
   { path: 'digital', component: DigitalInSettingsComponent },
+  { path: 'sht30', component: Sht30SettingsComponent },
+  { path: 'onewire', component: OnewireSettingsComponent },
+  { path: 'mpu', component: MpuSettingsComponent },
   { path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full'
@@ -62,6 +68,9 @@ const routes: Routes = [
     SignalkSettingsComponent,
     TimmerSettingsComponent,
     DigitalInSettingsComponent,
+    Sht30SettingsComponent,
+    OnewireSettingsComponent,
+    MpuSettingsComponent,
   ],
   imports: [
     BrowserModule,

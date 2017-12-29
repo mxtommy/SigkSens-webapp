@@ -1,0 +1,37 @@
+<mat-accordion>
+    
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Timer Settings</mat-panel-title>
+        </mat-expansion-panel-header>
+    
+        <mat-form-field class="width-full" >
+          <input matInput type=number min=200 placeholder="OneWire Read Interval" name="timer" [formControl]="timer">
+            <mat-error *ngIf="!timer.valid">
+                Please verify.
+            </mat-error>
+            <mat-hint>Interval in milliseconds between OneWire Bus reads (min 200)</mat-hint>
+        </mat-form-field>
+        <button mat-raised-button color="primary" [disabled]="!timer.valid || timer.pristine" (click)="saveTimer()">Save</button>
+      </mat-expansion-panel>
+    
+      <mat-expansion-panel *ngFor="let sensor of sensors">
+        <mat-expansion-panel-header>
+          <mat-panel-title>SignalK Paths</mat-panel-title>
+          <mat-panel-description>Sensor at Address: {{ sensor.address }}</mat-panel-description>
+        </mat-expansion-panel-header>
+    
+        <sensor-config-attr *ngFor="let attr of sensor.attr"
+          [address]="sensor.address"
+          [attrName]="attr.attrName"
+          [sensorType]="sensor.type"
+          [path]="attr.signalKPath"
+          [currentValue]="attr.value"
+          >
+        </sensor-config-attr>
+    
+      </mat-expansion-panel>
+      
+    
+    
+    </mat-accordion>

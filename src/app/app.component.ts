@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { MatDialog } from '@angular/material';
 
 import { ModalChangeHostnameComponent } from './modal-change-hostname/modal-change-hostname.component';
@@ -15,7 +16,12 @@ export class AppComponent implements OnInit {
 
   host: Observable<string>;
   status: boolean;
+
+  sensorInfoSub: Subscription;
   
+  sht30Present: boolean = false;
+  mpuPresent: boolean = false;
+  oneWirePresent: boolean = false;
 
 
   constructor(public dialog:MatDialog, private SensorApiService: SensorApiService) {}
@@ -23,7 +29,15 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.host = this.SensorApiService.getHostNameAsO();
     this.SensorApiService.getStatusAsO().subscribe(s => this.status = s);
-    
+
+    this.sensorInfoSub = this.SensorApiService.getSensorInfoAsO().subscribe(
+      sensorInfo => {
+        if (sensorInfo === null) { return; }
+        if (sensorInfo['sensorOneWire']) { this.oneWirePresent = true; }
+        if (sensorInfo['sensorSHT30']) { this.sht30Present = true; }
+        if (sensorInfo['sensorMPU925X']) { this.mpuPresent = true; }
+      });
+
   }
 
   changeHostname() {

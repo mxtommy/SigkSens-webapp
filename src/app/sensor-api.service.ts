@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import { HttpClient } from '@angular/common/http';
 
-interface ISensorObject {
+export interface ISensorObject {
   address: string; 
   type: string;
   attr: {
@@ -14,7 +14,24 @@ interface ISensorObject {
 }
 
 export interface ISensorInfo {
+  hostname: string;
+  signalKHost: string;
+  signalKPort: number;
+  signalKPath: string;
   sensors: ISensorObject[];
+  sensorOneWire: boolean;
+  sensorSHT30: boolean;
+  sensorMPU295X: boolean;
+  d1Mode: number;
+  d2Mode: number;
+  timers: {
+    oneWire: number;
+    sht30: number;
+    mpu925x: number;
+  };
+
+
+
 }
 
 @Injectable()
