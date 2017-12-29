@@ -17,6 +17,7 @@ import {  MatInputModule,
           MatCardModule,
           MatButtonModule,
           MatButtonToggleModule,
+          MatRadioModule,
           MatListModule,
           MatDialogModule,
            } from '@angular/material';
@@ -83,6 +84,7 @@ const routes: Routes = [
     MatSidenavModule,
     MatButtonModule,  
     MatButtonToggleModule,
+    MatRadioModule,
     MatListModule,
     MatDialogModule,
 

@@ -17,37 +17,62 @@
 
   <mat-expansion-panel>
     <mat-expansion-panel-header>
-      <mat-panel-title>Input Types</mat-panel-title>
+      <mat-panel-title>Input 1</mat-panel-title>
     </mat-expansion-panel-header>
 
-    <mat-form-field class="width-full" >
-      <input matInput type=number min=100 placeholder="DigitalIn Update Interval" name="timer" [formControl]="timer">
-        <mat-error *ngIf="!timer.valid">
-            Please verify.
-        </mat-error>
-        <mat-hint>Interval in milliseconds between updates (min 100)</mat-hint>
-    </mat-form-field>
-    <button mat-raised-button color="primary" [disabled]="!timer.valid || timer.pristine" (click)="saveTimer()">Save</button>
+  Mode
+   <mat-button-toggle-group name="d1Mode" [formControl]="d1Mode" >
+      <mat-button-toggle value="0">
+        Off
+      </mat-button-toggle>
+      <mat-button-toggle value="1">
+        <mat-icon>State (on/off)</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="2">
+        <mat-icon>Freqency (hz)</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group> 
+    <button mat-raised-button color="primary" [disabled]="!d1Mode.valid || d1Mode.pristine" (click)="saveD1Mode()">Save</button>
+   
   </mat-expansion-panel>  
 
-<!--
+
   <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>SignalK Paths</mat-panel-title>
-      <mat-panel-description>Sensor at Address: {{ sensor.address }}</mat-panel-description>
-    </mat-expansion-panel-header>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Input 2</mat-panel-title>
+      </mat-expansion-panel-header>
+  
+    Mode
+     <mat-button-toggle-group name="d2Mode" [formControl]="d2Mode" >
+        <mat-button-toggle value="0">
+          Off
+        </mat-button-toggle>
+        <mat-button-toggle value="1">
+          <mat-icon>State (on/off)</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="2">
+          <mat-icon>Freqency (hz)</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group> 
+      <button mat-raised-button color="primary" [disabled]="!d2Mode.valid || d2Mode.pristine" (click)="saveD2Mode()">Save</button>
+     
+    </mat-expansion-panel>  
 
-    <sensor-config-attr *ngFor="let attr of sensor.attr"
-      [address]="sensor.address"
-      [attrName]="attr.attrName"
-      [sensorType]="sensor.type"
-      [path]="attr.signalKPath"
-      [currentValue]="attr.value"
-      >
-    </sensor-config-attr>
-
-  </mat-expansion-panel>
--->
-
+    <mat-expansion-panel *ngFor="let sensor of sensors">
+      <mat-expansion-panel-header>
+        <mat-panel-title>SignalK Paths</mat-panel-title>
+        <mat-panel-description>Input: {{ sensor.address }}</mat-panel-description>
+      </mat-expansion-panel-header>
+  
+      <sensor-config-attr *ngFor="let attr of sensor.attr"
+        [address]="sensor.address"
+        [attrName]="attr.attrName"
+        [sensorType]="sensor.type"
+        [path]="attr.signalKPath"
+        [currentValue]="attr.value"
+        >
+      </sensor-config-attr>
+  
+    </mat-expansion-panel>    
 
 </mat-accordion>

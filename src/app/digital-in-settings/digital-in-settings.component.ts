@@ -13,9 +13,11 @@ export class DigitalInSettingsComponent implements OnInit, OnDestroy {
 
   sensorInfoSub: Subscription;
   timer: FormControl = new FormControl('', Validators.required);
-
-  d1Mode: number = 0;
-  d2Mode: number = 0;
+  //d1Mode: number = 0;
+  d1Mode: FormControl = new FormControl('', Validators.required);
+  d2Mode: FormControl = new FormControl('', Validators.required);
+  
+  sensors: ISensorObject[] = [];
   
   constructor(private SensorApiService: SensorApiService) { }
   
@@ -28,9 +30,12 @@ export class DigitalInSettingsComponent implements OnInit, OnDestroy {
           this.timer.setValue(sensorInfo.timers['digitalIn']);
         }
 
-        this.d1Mode = sensorInfo.d1Mode;
-        this.d2Mode = sensorInfo.d2Mode;
+        this.d1Mode.setValue(sensorInfo.d1Mode);
+        this.d2Mode.setValue(sensorInfo.d2Mode);
         
+        this.sensors = sensorInfo["sensors"].filter(function (sensor) { return sensor.type == "digitalIn" });
+        
+
       });
       
 
@@ -47,6 +52,16 @@ export class DigitalInSettingsComponent implements OnInit, OnDestroy {
   saveTimer() {
     this.SensorApiService.setNewTimerValue('digitalIn', this.timer.value);
     this.timer.markAsPristine();
+  }
+
+  saveD1Mode() {
+    this.SensorApiService.setDigitalInputMode(1,this.d1Mode.value);
+    this.d1Mode.markAsPristine();
+  }
+
+  saveD2Mode() {
+    this.SensorApiService.setDigitalInputMode(2,this.d2Mode.value);
+    this.d2Mode.markAsPristine();
   }
 
 }
