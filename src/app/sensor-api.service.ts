@@ -21,7 +21,7 @@ export interface ISensorInfo {
 export class SensorApiService {
 
   //hostname: BehaviorSubject<string> = new BehaviorSubject<string>(window.location.host);
-  hostname: BehaviorSubject<string> = new BehaviorSubject<string>("192.168.0.51");
+  hostname: BehaviorSubject<string> = new BehaviorSubject<string>("192.168.0.50");
   sensorInfo: BehaviorSubject<ISensorInfo> = new BehaviorSubject<ISensorInfo>(null);
   status: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
